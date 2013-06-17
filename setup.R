@@ -12,6 +12,21 @@ const_initial_state <- function (N, tree_density, pest_density, area)
   return (state)
 }
 
+rpois_initial_state <- function (N, tree_density, pest_density, area) 
+{
+  E_trees <- tree_density*area
+  E_pests <- pest_density*area
+  trees <- rpois(N, E_trees)
+  pests <- rpois(N, E_pests)
+  
+  patch <- 1:N
+  
+  state <- data.frame (trees=trees, pests=pests)
+  rownames (state) <- patch
+  
+  return (state)
+}
+
 # Area ####
 const_area <- function(N, area)
 {
@@ -62,9 +77,9 @@ const_human <- function(N, human=1)
   return(rep.int(human, N))
 }
 
-prop_area_human <- function(area, human_0)
+prop_area_human <- function(area, humans_per_area)
 {
-  return (area*human_0)
+  return (area*humans_per_area)
 }                      
 
 # Connectivity ####

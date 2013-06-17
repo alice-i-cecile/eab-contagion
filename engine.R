@@ -37,6 +37,12 @@ eab_contagion_det <- function(sim)
   # Calculate transport
   transport_det <- function(i)
   {
+    # Check if human transport is in effect
+    if (sum(sim$environment$human)==0)
+    {
+      return(rep(0, times=N))
+    }
+    
     # Extract relevant parameters
     human_area <- sim$param$human_area
     patch_area <- sim$environment$area[i]
@@ -142,7 +148,12 @@ eab_contagion_sto <- function(sim)
   # Calculate transport
   transport_sto <- function(i)
   {
-    
+    # Check if human transport is in effect
+    if (sum(sim$environment$human)==0)
+    {
+      return(rep(0, times=N))
+    }
+      
     # Extract relevant parameters
     human_area <- sim$param$human_area
     patch_area <- sim$environment$area[i]

@@ -122,6 +122,12 @@ rneedles <- function(n, p, K)
   # Start with 0 successes
   k <- 0
   
+  # Nothing is found if there are no attempts
+  if(n==0)
+  {
+    return(0)
+  }
+  
   # Make a decision at each branch
   for (i in 1:n)
   {
